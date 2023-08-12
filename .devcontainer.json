@@ -1,0 +1,24 @@
+{
+    "name": "yolo",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12",
+    "runArgs": ["--ipc=host"],
+    "customizations": {
+      "vscode": {
+        "extensions": ["Iterative.dvc", "ms-python.python", "redhat.vscode-yaml"]
+      }
+    },
+    "features": {
+        "ghcr.io/iterative/features/nvtop:1": {},
+        "ghcr.io/devcontainers/features/nvidia-cuda:1": {
+            "installCudnn": true
+        },
+        "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+          "packages": "libgl1"
+        },
+        "ghcr.io/saml-to/devcontainer-features/assume-aws-role:1": {
+            "role": "arn:aws:iam::342840881361:role/iterative-saml-codespaces"
+        },
+      "ghcr.io/devcontainers/features/aws-cli:1": {}
+    },
+    "postCreateCommand": "pip install -e '.[dev]' dvclive"
+  }
